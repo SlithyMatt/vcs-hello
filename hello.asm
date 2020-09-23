@@ -64,11 +64,11 @@ StartOfFrame:
 
    ldx #6
 @line1_loop:
-   lda #%01010000
+   lda #%10100000
    sta PF0
-   lda #%11101000
+   lda #%01110100
    sta PF1
-   lda #%01100001
+   lda #%01000010
    sta PF2
    nop
    nop
@@ -89,11 +89,11 @@ StartOfFrame:
 
    ldx #6
 @line2_loop:
-   lda #%01010000
+   lda #%10100000
    sta PF0
-   lda #%10001000
+   lda #%01000100
    sta PF1
-   lda #%10010001
+   lda #%10100010
    sta PF2
    nop
    nop
@@ -114,11 +114,11 @@ StartOfFrame:
 
    ldx #6
 @line3_loop:
-   lda #%01110000
+   lda #%11100000
    sta PF0
-   lda #%11101000
+   lda #%01110100
    sta PF1
-   lda #%10010001
+   lda #%10100010
    sta PF2
    nop
    nop
@@ -139,11 +139,11 @@ StartOfFrame:
 
    ldx #6
 @line4_loop:
-   lda #%01010000
+   lda #%10100000
    sta PF0
-   lda #%10001000
+   lda #%01000100
    sta PF1
-   lda #%10010001
+   lda #%10100010
    sta PF2
    nop
    nop
@@ -164,11 +164,11 @@ StartOfFrame:
 
    ldx #6
 @line5_loop:
-   lda #%01010000
+   lda #%10100000
    sta PF0
-   lda #%11101110
+   lda #%01110111
    sta PF1
-   lda #%01100111
+   lda #%01001110
    sta PF2
    nop
    nop
