@@ -2,11 +2,7 @@
 
 ; RAM Variables
 
-PATTERN = $80
-
 ; Constants
-
-TIMETOCHANGE = 20
 
 .org $1000
 .segment "STARTUP"
@@ -20,13 +16,11 @@ Clear:
    bne Clear
 
    ; Initialize graphics
-   lda #0
-   sta PATTERN
-
    lda #$45
    sta COLUPF
 
-   ldy #0
+   lda #0
+   sta COLUBK
 
 StartOfFrame:
 
@@ -37,11 +31,7 @@ StartOfFrame:
    lda #2
    sta VSYNC
 
-   lda #0
-   sta COLUBK
-
 ; 3 scanlines of VSYNCH signal...
-
    sta WSYNC
 
    sta WSYNC
@@ -60,26 +50,152 @@ StartOfFrame:
    dex
    bne @vblank_loop
 
-   ;------------------------------------------------
-   ; Handle a change in the pattern once every 20 frames
-   ; and write the pattern to the PF1 register
-   iny                    ; increment speed count by one
-   cpy #TIMETOCHANGE      ; has it reached our "change point"?
-   bne notyet             ; no, so branch past
-   ldy #0                 ; reset speed count
-   inc PATTERN            ; switch to next pattern
-notyet:
-   lda PATTERN            ; use our saved pattern
-   sta PF1                ; as the playfield shape
-
 ; 192 scanlines of picture...
 
-   ldx #192
-@picture_loop:
-   stx COLUBK
+   ldx #0
+   stx PF0
+   stx PF1
+   stx PF2
+@header_loop:
+   sta WSYNC
+   inx
+   cpx #30
+   bne @header_loop
+
+   ldx #6
+@line1_loop:
+   lda #%01010000
+   sta PF0
+   lda #%11101000
+   sta PF1
+   lda #%01100001
+   sta PF2
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   lda #0
+   sta PF0
+   sta PF1
+   sta PF2
    sta WSYNC
    dex
-   bne @picture_loop
+   bne @line1_loop
+
+   ldx #6
+@line2_loop:
+   lda #%01010000
+   sta PF0
+   lda #%10001000
+   sta PF1
+   lda #%10010001
+   sta PF2
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   lda #0
+   sta PF0
+   sta PF1
+   sta PF2
+   sta WSYNC
+   dex
+   bne @line2_loop
+
+   ldx #6
+@line3_loop:
+   lda #%01110000
+   sta PF0
+   lda #%11101000
+   sta PF1
+   lda #%10010001
+   sta PF2
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   lda #0
+   sta PF0
+   sta PF1
+   sta PF2
+   sta WSYNC
+   dex
+   bne @line3_loop
+
+   ldx #6
+@line4_loop:
+   lda #%01010000
+   sta PF0
+   lda #%10001000
+   sta PF1
+   lda #%10010001
+   sta PF2
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   lda #0
+   sta PF0
+   sta PF1
+   sta PF2
+   sta WSYNC
+   dex
+   bne @line4_loop
+
+   ldx #6
+@line5_loop:
+   lda #%01010000
+   sta PF0
+   lda #%11101110
+   sta PF1
+   lda #%01100111
+   sta PF2
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   nop
+   lda #0
+   sta PF0
+   sta PF1
+   sta PF2
+   sta WSYNC
+   dex
+   bne @line5_loop
+
+   ldx #0
+   stx PF0
+   stx PF1
+   stx PF2
+@footer_loop:
+   sta WSYNC
+   inx
+   cpx #132
+   bne @footer_loop
 
    lda #%01000010
    sta VBLANK                     ; end of screen - enter blanking
@@ -93,6 +209,8 @@ notyet:
    bne @oscan_loop
 
    jmp StartOfFrame
+
+; Pattern Data
 
 .org $1FFA
 .segment "VECTORS"
