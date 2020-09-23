@@ -66,9 +66,9 @@ StartOfFrame:
 @line1_loop:
    lda #%10100000
    sta PF0
-   lda #%01110100
+   lda #%01101001
    sta PF1
-   lda #%01000010
+   lda #%10001000
    sta PF2
    nop
    nop
@@ -79,9 +79,11 @@ StartOfFrame:
    nop
    nop
    nop
-   lda #0
+   lda #%10000000
    sta PF0
+   lda #%00100110
    sta PF1
+   lda #%00110010
    sta PF2
    sta WSYNC
    dex
@@ -91,9 +93,9 @@ StartOfFrame:
 @line2_loop:
    lda #%10100000
    sta PF0
-   lda #%01000100
+   lda #%01001001
    sta PF1
-   lda #%10100010
+   lda #%10010100
    sta PF2
    nop
    nop
@@ -104,9 +106,11 @@ StartOfFrame:
    nop
    nop
    nop
-   lda #0
+   lda #%10000000
    sta PF0
+   lda #%01010101
    sta PF1
+   lda #%01010010
    sta PF2
    sta WSYNC
    dex
@@ -116,9 +120,9 @@ StartOfFrame:
 @line3_loop:
    lda #%11100000
    sta PF0
-   lda #%01110100
+   lda #%01101001
    sta PF1
-   lda #%10100010
+   lda #%10010100
    sta PF2
    nop
    nop
@@ -129,9 +133,11 @@ StartOfFrame:
    nop
    nop
    nop
-   lda #0
+   lda #%10100000
    sta PF0
+   lda #%01010110
    sta PF1
+   lda #%01010010
    sta PF2
    sta WSYNC
    dex
@@ -141,9 +147,9 @@ StartOfFrame:
 @line4_loop:
    lda #%10100000
    sta PF0
-   lda #%01000100
+   lda #%01001001
    sta PF1
-   lda #%10100010
+   lda #%10010100
    sta PF2
    nop
    nop
@@ -154,9 +160,11 @@ StartOfFrame:
    nop
    nop
    nop
-   lda #0
+   lda #%10100000
    sta PF0
+   lda #%01010101
    sta PF1
+   lda #%01010010
    sta PF2
    sta WSYNC
    dex
@@ -166,9 +174,9 @@ StartOfFrame:
 @line5_loop:
    lda #%10100000
    sta PF0
-   lda #%01110111
+   lda #%01101101
    sta PF1
-   lda #%01001110
+   lda #%00001001
    sta PF2
    nop
    nop
@@ -179,9 +187,11 @@ StartOfFrame:
    nop
    nop
    nop
-   lda #0
+   lda #%01010000
    sta PF0
+   lda #%00100101
    sta PF1
+   lda #%00110110
    sta PF2
    sta WSYNC
    dex
