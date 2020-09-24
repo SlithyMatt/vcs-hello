@@ -16,7 +16,7 @@ Clear:
    bne Clear
 
    ; Initialize graphics
-   lda #$45
+   lda #$44
    sta COLUPF
 
    lda #0
